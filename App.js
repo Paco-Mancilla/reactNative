@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Switch, TextInput, Alert} from 'react-native';
+import {Platform, StyleSheet,View} from 'react-native';
 
 
 const instructions = Platform.select({
@@ -27,36 +27,14 @@ export default class App extends Component<Props> {
   }
 
 
-  onChange=(value)=>{
-    console.warn(`El switch cambiara a: ${value}`)
-    this.setState({switchValue:value})
-  }
-  onPressLearnMore=()=>{ 
-    console.warn('Escribiste')
-    Alert.alert(`Cambio de variable a: ${this.state.text}`)
-  }
+
   render() {
     return (
       <View style={styles.container}>
-      <TextInput
-      style={{ height: 40, width:300, borderColor: 'gray', borderWidth: 1 }}
-      onChangeText= {text=>this.setState({text: text} )}
-      />
-      <Switch
-        onValueChange={()=>this.onChange(!this.state.switchValue)}
-        value={this.state.switchValue}
-        />
-        <Button 
-        onPress={() => this.onPressLearnMore()}
-        title="Learn More"
-        color="#841584"
-        accessibilityLabel = "lear more about this purple button"
-        />
-
-        <Text style={styles.welcome}>React-Francisco Mancilla Figueroa</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+        <View style={[styles.box, styles.red]}/>
+        <View style={[styles.box, styles.green]}/>
+        <View style={[styles.box, styles.blue]}/>
+        </View>
     );
   }
 }
@@ -64,18 +42,23 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    flexDirection:'row',
+    flexWrap:'wrap'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  box: {
+    width:150,
+    height:200,
+    backgroundColor:'black',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  red: {
+    backgroundColor:"red"
   },
+  green: {
+    flex:1,
+    backgroundColor:"green"
+  },
+  blue: {
+    backgroundColor:"blue"
+  }
 });
